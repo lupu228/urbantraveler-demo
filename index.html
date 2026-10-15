@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBAN Traveler — Travel Goods Specialty Retailer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #142640;
+    --navy-ink: #0d1b2e;
+    --terracotta: #d97b4f;
+    --terracotta-deep: #a24f2d;
+    --cream: #faf6f0;
+    --sand: #cbb79c;
+    --line: #e4dccf;
+    --text: #2a2521;
+    --muted: #70665c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Inter', system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height:1.5;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    *, *::before, *::after { animation:none !important; transition:none !important; }
+  }
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .rise { opacity:0; animation:riseIn .65s cubic-bezier(.19,1,.22,1) forwards; }
+  .rise-1 { animation-delay:.05s; } .rise-2 { animation-delay:.16s; } .rise-3 { animation-delay:.27s; }
+  .rise-4 { animation-delay:.38s; } .rise-5 { animation-delay:.3s; }
+  h1,h2,h3 { font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 28px; }
+
+  /* header */
+  header { border-bottom:1px solid var(--line); background:var(--cream); position:sticky; top:0; z-index:40; transition:box-shadow .25s, border-color .25s; }
+  header.scrolled { box-shadow:0 8px 24px -16px rgba(20,38,64,0.35); border-bottom-color:transparent; }
+  .topbar {
+    background:var(--navy); color:#f0e9df; font-size:13px; text-align:center; padding:8px 0;
+    letter-spacing:0.02em;
+  }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .logo { font-size:24px; font-weight:600; color:var(--navy); }
+  .logo span { color:var(--terracotta-deep); }
+  .nav-links { display:flex; gap:32px; font-size:15px; font-weight:500; }
+  .nav-actions { display:flex; gap:18px; align-items:center; }
+  .icon-btn {
+    width:40px; height:40px; border-radius:50%; display:grid; place-items:center;
+    border:1px solid var(--line); background:#fff;
+  }
+
+  /* hero */
+  .hero {
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(217,123,79,0.16), transparent 50%),
+      radial-gradient(circle at 10% 90%, rgba(20,38,64,0.10), transparent 55%),
+      var(--navy-ink);
+    color:#f5efe6;
+  }
+  .hero .wrap { padding:96px 28px 100px; display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center; }
+  .hero-routes {
+    position:absolute; inset:0; opacity:0.12;
+    background-image:
+      linear-gradient(rgba(245,239,230,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,239,230,0.5) 1px, transparent 1px);
+    background-size:64px 64px;
+  }
+  .eyebrow { color:var(--terracotta); font-weight:600; font-size:14px; letter-spacing:0.08em; margin-bottom:18px; }
+  .hero h1 { font-size:52px; line-height:1.05; max-width:560px; }
+  .hero p { margin-top:20px; font-size:18px; color:#e6ddd0; max-width:480px; }
+  .hero-cta { margin-top:34px; display:flex; gap:16px; }
+  .btn {
+    display:inline-block; padding:15px 28px; border-radius:999px; font-weight:600; font-size:15px;
+    background:var(--terracotta-deep); color:#fff;
+  }
+  .btn.ghost { background:transparent; border:1px solid rgba(245,239,230,0.35); color:#f5efe6; }
+  .hero-stat {
+    position:relative; background:rgba(245,239,230,0.06); border:1px solid rgba(245,239,230,0.18);
+    border-radius:20px; padding:36px; backdrop-filter:blur(2px);
+  }
+  .hero-stat .num { font-family:'Fraunces', serif; font-size:56px; color:var(--terracotta); }
+  .hero-stat .lbl { margin-top:6px; font-size:15px; color:#e6ddd0; }
+  .hero-stat ul { margin-top:28px; display:grid; gap:12px; font-size:14px; color:#e8e0d3; }
+  .hero-stat li { display:flex; gap:10px; align-items:flex-start; }
+
+  /* categories */
+  section { padding:84px 0; }
+  .section-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; }
+  .section-head h2 { font-size:32px; color:var(--navy); }
+  .section-head p { color:var(--muted); font-size:15px; }
+  .cats { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .cat-card {
+    background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px;
+    display:flex; flex-direction:column; gap:14px; transition:transform .15s, border-color .15s;
+  }
+  .cat-card:hover { transform:translateY(-3px); border-color:var(--terracotta); }
+  .cat-head { display:flex; align-items:center; gap:12px; }
+  .cat-emoji { font-size:24px; line-height:1; transition:transform .25s cubic-bezier(.34,1.56,.64,1); display:inline-block; }
+  .cat-card:hover .cat-emoji { transform:scale(1.15) rotate(-4deg); }
+  .cat-card h3 { font-size:19px; color:var(--navy); }
+  .cat-card p { font-size:14px; color:var(--muted); }
+  .cat-card .go { margin-top:auto; font-size:13px; font-weight:600; color:var(--terracotta-deep); }
+
+  /* trust strip */
+  .trust { background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:40px 0; }
+  .trust .wrap { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .trust-item { display:flex; gap:12px; align-items:center; font-size:14px; color:var(--navy); font-weight:500; }
+  .trust-item .dot { color:var(--terracotta-deep); font-size:20px; }
+
+  /* featured */
+  .products { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; }
+  .product-card { background:#fff; border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .product-thumb {
+    aspect-ratio:1; background:#fdfcfa;
+    display:grid; place-items:center; color:var(--navy); font-size:13px; font-weight:600;
+    letter-spacing:0.04em; text-align:center; padding:16px; overflow:hidden;
+  }
+  .product-thumb img { width:100%; height:100%; object-fit:contain; }
+  .product-info { padding:18px; }
+  .product-info .tag { font-size:12px; color:var(--terracotta-deep); font-weight:600; margin-bottom:6px; }
+  .product-info h3 { font-size:16px; font-weight:600; font-family:'Inter'; color:var(--navy); }
+  .product-info .price { margin-top:8px; font-size:15px; color:var(--text); font-weight:600; }
+
+  /* newsletter */
+  .newsletter { background:var(--navy); color:#f5efe6; border-radius:24px; margin:0 auto 90px; max-width:1180px; padding:56px; display:flex; justify-content:space-between; align-items:center; gap:40px; }
+  .newsletter h2 { font-size:28px; max-width:360px; }
+  .newsletter p { margin-top:10px; color:#e6ddd0; font-size:15px; }
+  .nl-form { display:flex; gap:10px; }
+  .nl-form input { padding:14px 18px; border-radius:999px; border:none; width:260px; font-size:14px; }
+  .nl-form button { padding:14px 24px; border-radius:999px; background:var(--terracotta-deep); color:#fff; font-weight:600; border:none; font-size:14px; cursor:pointer; }
+
+  footer { background:var(--navy-ink); color:#e6ddd0; padding:60px 0 32px; }
+  .foot-grid { display:grid; grid-template-columns:1.4fr repeat(3, 1fr); gap:40px; }
+  .foot-grid h3 { color:#f5efe6; font-size:14px; margin-bottom:16px; }
+  .foot-grid ul { display:grid; gap:10px; font-size:14px; }
+  .foot-bottom { margin-top:48px; padding-top:24px; border-top:1px solid rgba(245,239,230,0.12); font-size:13px; display:flex; justify-content:space-between; }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns:1fr; padding:64px 20px; }
+    .hero h1 { font-size:38px; }
+    .cats { grid-template-columns:1fr 1fr; }
+    .products { grid-template-columns:1fr 1fr; }
+    .trust .wrap { grid-template-columns:1fr 1fr; }
+    .newsletter { flex-direction:column; align-items:flex-start; padding:36px; margin:0 20px 60px; }
+    .nl-form { width:100%; } .nl-form input { flex:1; width:auto; }
+    .foot-grid { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">Free shipping on US orders over $75 &nbsp;·&nbsp; 9,500+ hard-to-find travel products</div>
+  <div class="wrap nav">
+    <div class="logo">URBAN <span>Traveler</span></div>
+    <nav class="nav-links">
+      <a href="#categories">Adapters</a>
+      <a href="#categories">RFID Blocking</a>
+      <a href="#categories">Luggage</a>
+      <a href="#categories">Travel Clothing</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="icon-btn">🔍</div>
+      <div class="icon-btn">🛒</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-routes"></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow rise rise-1">MINNESOTA'S TRAVEL GOODS SPECIALISTS SINCE 1986</div>
+      <h1 class="rise rise-2">Gear that works as hard as your itinerary.</h1>
+      <p class="rise rise-3">9,500+ hard-to-find travel products — adapters, RFID-blocking wallets, luggage, and more — picked for people who actually leave the house.</p>
+      <div class="hero-cta rise rise-4">
+        <a href="#categories" class="btn">Shop by category</a>
+        <a href="#featured" class="btn ghost">See bestsellers</a>
+      </div>
+    </div>
+    <div class="hero-stat rise rise-5">
+      <div class="num" id="statNum">0</div>
+      <div class="lbl">hard-to-find products in stock</div>
+      <ul>
+        <li>✓ Adapters &amp; converters for 190+ countries</li>
+        <li>✓ RFID-blocking wallets, passport holders &amp; bags</li>
+        <li>✓ Luggage, briefcases &amp; packing systems</li>
+        <li>✓ Travel clothing &amp; money belts</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="wrap">
+  <div class="section-head">
+    <h2>Shop by category</h2>
+    <p>Everything organized so you find it in seconds, not scrolls.</p>
+  </div>
+  <div class="cats">
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">🔌</span><h3>Adapters &amp; Converters</h3></div>
+      <p>Universal plugs, voltage converters, and multi-country travel kits.</p>
+      <span class="go">Shop Adapters →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">🛡️</span><h3>RFID-Blocking</h3></div>
+      <p>Wallets, passport holders, and bags that shield your cards and chips.</p>
+      <span class="go">Shop RFID-Blocking →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">🧳</span><h3>Luggage</h3></div>
+      <p>Carry-ons, checked bags, and packing cubes built for real travel.</p>
+      <span class="go">Shop Luggage →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">💼</span><h3>Briefcases</h3></div>
+      <p>Business-ready bags for the trip that doubles as a work day.</p>
+      <span class="go">Shop Briefcases →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">🧥</span><h3>Travel Clothing</h3></div>
+      <p>Quick-dry, wrinkle-resistant pieces made for long days in transit.</p>
+      <span class="go">Shop Clothing →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-head"><span class="cat-emoji">👝</span><h3>Money Belts</h3></div>
+      <p>Discreet, secure ways to carry cash, cards, and documents.</p>
+      <span class="go">Shop Money Belts →</span>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><span class="dot">✓</span> Hard-to-find items, in stock</div>
+    <div class="trust-item"><span class="dot">✓</span> Free shipping over $75</div>
+    <div class="trust-item"><span class="dot">✓</span> Secure checkout</div>
+    <div class="trust-item"><span class="dot">✓</span> Easy 30-day returns</div>
+  </div>
+</div>
+
+<section id="featured" class="wrap">
+  <div class="section-head">
+    <h2>Bestsellers</h2>
+    <p>Pulled straight from your live catalog.</p>
+  </div>
+  <div class="products">
+    <div class="product-card">
+      <div class="product-thumb"><img src="https://www.urbantraveler.com/cdn/shop/products/409182204_12_1_large.jpg?v=1558382084" alt="22&quot; Expandable Carry-On Rollaboard"></div>
+      <div class="product-info"><div class="tag">Luggage · Travelpro</div><h3>22" Expandable Carry-On Rollaboard (Platinum Elite)</h3><div class="price">$390.00 <s style="color:var(--muted); font-weight:500; font-size:14px;">$920.00</s></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><img src="https://www.urbantraveler.com/cdn/shop/files/Screenshot2026-07-20at2.04.09PM_large.png?v=1784545477" alt="Werks Traveler 7.0 Frequent Flyer Carry-On"></div>
+      <div class="product-info"><div class="tag">Luggage · Victorinox</div><h3>Werks Traveler 7.0 Frequent Flyer Carry-On</h3><div class="price">$549.99</div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><img src="https://www.urbantraveler.com/cdn/shop/files/Screenshot2026-07-20at2.17.47PM_large.png?v=1784546291" alt="Werks Traveler 7.0 Compact Briefcase"></div>
+      <div class="product-info"><div class="tag">Briefcases · Victorinox</div><h3>Werks Traveler 7.0 Compact Briefcase</h3><div class="price">$249.99</div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-thumb"><img src="https://www.urbantraveler.com/cdn/shop/files/UAPC_MAIN_large.webp?v=1705693943" alt="International Power Adapter Plus"></div>
+      <div class="product-info"><div class="tag">Adapters · VV</div><h3>International Power Adapter Plus</h3><div class="price">$49.95</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="newsletter">
+  <div>
+    <h2>Packing tips &amp; new-arrival alerts</h2>
+    <p>One email a month. No spam, just useful travel gear picks.</p>
+  </div>
+  <form class="nl-form" onsubmit="return false;">
+    <input type="email" placeholder="you@email.com">
+    <button>Subscribe</button>
+  </form>
+</div>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="color:#f5efe6;">URBAN <span>Traveler</span></div>
+      <p style="margin-top:14px; font-size:14px; max-width:260px;">Travel goods specialty retailer. 9,500+ hard-to-find products for people who go places.</p>
+    </div>
+    <div><h3>Shop</h3><ul><li>Adapters</li><li>RFID-Blocking</li><li>Luggage</li><li>Travel Clothing</li></ul></div>
+    <div><h3>Support</h3><ul><li>Shipping</li><li>Returns</li><li>Contact</li><li>FAQ</li></ul></div>
+    <div><h3>Company</h3><ul><li>About</li><li>Reviews</li></ul></div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 URBAN Traveler</span>
+    <span>Homepage demo — built for review</span>
+  </div>
+</footer>
+
+
+<script>
+  // sticky header shadow on scroll
+  const headerEl = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive:true });
+
+  // count up the hero stat once, on load
+  (function(){
+    const el = document.getElementById('statNum');
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = '9,500+'; return; }
+    const target = 9500, duration = 1100, start = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target).toLocaleString('en-US') + (p >= 1 ? '+' : '');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
